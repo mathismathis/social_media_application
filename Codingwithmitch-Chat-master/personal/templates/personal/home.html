@@ -1,0 +1,161 @@
+{% extends 'base.html' %}
+
+{% load static %}
+
+{% block content %}
+
+<h3 class="pb-4">Welcome to Clover Chat!</h3>
+
+
+<style type="text/css">
+	.profile-image{
+		max-height: 100px;
+		max-width: 100px;
+	}
+	.card{
+		border-radius: 12px;
+	}
+	.friends-text{
+		color: #000;
+		font-weight: 500;
+	}
+	.friends-text-container{
+		border: 1px solid #cccccc;
+		border-radius: 12px;
+	}
+	.friends-btn:hover {
+		background-color: #bfbfbf;
+		border-color: #bfbfbf;
+	}
+	.dropdown-toggle::after {
+		content: none;
+	}
+	.profile-link{
+		color: #000;
+	}
+	.checkmark-icon{
+		color: green;
+	}
+	.cancel-icon{
+		color: red;
+	}
+	.profile-image {
+		border-radius: 50px;
+		width: 90px;
+		height: 90px;
+		border: 5px solid #9100ff;
+	}
+
+	.card.flex-row.flex-grow-1.p-2.mx-2.my-2.align-items-center {
+		border: none;
+	}
+	.card.flex-row.flex-grow-1.p-2.mx-2.my-2.align-items-center {
+		/* width: 20% !important; */
+		max-width: 18%;
+	}
+</style>
+
+<div class="container">
+	<div class="card p-2">
+
+
+
+		{% if accounts %}
+		<div class="d-flex flex-row flex-wrap">
+		{% for account in accounts %}
+
+		<div class="card flex-row flex-grow-1 p-2 mx-2 my-2 align-items-center">
+			<a class="profile-link" href="{% url 'account:view' user_id=account.id %}">
+
+
+                <img class="img-fluid profile-image" src="{{account.profile_image.url}}" alt="">
+
+
+			</a>
+				<div class="card-center px-2 col-md-12">
+								<a class="profile-link" href="{% url 'account:view' user_id=account.id %}">
+					{% if account.username|length > 6 %}
+
+									<h4 class="card-title">{{ account.username|slice:":6" }}...</h4>
+					{% else %}
+					<h4 class="card-title">{{account.username}}</h4>
+									{% endif %}
+					{% if account %}
+					<!---<p class="card-text"><a href="#" onclick="createOrReturnPrivateChat('{{account.id}}')">Send a Message</a></p>--->
+					{% endif %}
+
+							</a>
+
+
+				</div>
+			<div class="d-flex flex-row card-right flex-grow-1 justify-content-end mx-2">
+
+				{% if account == request.user %}
+					<div class="d-flex flex-row friends-text-container p-3">
+						<p class="friends-text m-auto">
+							This is you
+						</p>
+						<span class="material-icons m-auto pl-2">
+						person_pin
+						</span>
+					</div>
+				{% endif %}
+			</div>
+		</div>
+		{% if forloop.counter|divisibleby:5 %}
+		</div><div class="d-flex flex-row flex-wrap">
+		{% endif %}
+
+		{% endfor %}
+
+		{% else %} <!-- If no friends -->
+		<div class="d-flex flex-row flex-grow-1 justify-content-center align-items-center p-4">
+			<p>No results</p>
+		</div>
+		{% endif %}
+		</div>
+	</div>
+
+
+	<style type="text/css">
+	.profile-image{
+		max-height: 100px;
+		max-width: 100px;
+	}
+	.card{
+		border-radius: 12px;
+	}
+	.friends-text{
+		color: #000;
+		font-weight: 500;
+	}
+	.friends-text-container{
+		border: 1px solid #cccccc;
+		border-radius: 12px;
+	}
+	.friends-btn:hover {
+		background-color: #bfbfbf;
+		border-color: #bfbfbf;
+	}
+	.dropdown-toggle::after {
+		content: none;
+	}
+	.profile-link{
+		color: #000;
+	}
+	.checkmark-icon{
+		color: green;
+	}
+	.cancel-icon{
+		color: red;
+	}
+
+</style>
+
+
+
+
+{% endblock content %}
+
+
+
