@@ -4,13 +4,15 @@ For a guide on pushing a project like this to production check out this repo: [h
 
 This document is a guide to creating a new django project that uses:
 1. windows
-1. python3.8.2
-1. pip
-1. django 2.2.15 (LTS)
-1. virtualenv
-1. Redis
-1. django channels 2
-1. Postgres
+2. python3.8.2
+3. pip
+4. django 2.2.15 (LTS)
+5. virtualenv
+6. Redis
+7. django channels 2
+8. Postgres
+
+print("hi")
 
 ## Install Python3.8.2
 Bottom of page: https://www.python.org/downloads/release/python-382/
